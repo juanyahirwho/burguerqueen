@@ -19,31 +19,25 @@ export class UserOrderService {
   }
 
   async initOrder() {
-    // Comprobamos si la orden existe en Preferences
-    const order = await Preferences.get({ key: KEY_ORDER });
+    const order = await Preferences.get({ key: KEY_ORDER }); //Revisar si ya existe la orden
     if (!order.value) {
-      // Iniciamos la orden
       this.clear();
     } else {
-      // Parseamos la orden
       this.order = JSON.parse(order.value);
     }
   }
 
   async saveOrder() {
-    // Guardamos la orden en Preferences
     await Preferences.set({ key: KEY_ORDER, value: JSON.stringify(this.order) });
   }
 
   async resetOrder() {
-    // reinicio los productos
     this.order.products = [];
     await this.saveOrder();
   }
 
   async clear() {
-    // Volvemos a crear la orden
-    this.order = new Order();
+    this.order = new Order(); //Crear la orden en blanco
     this.order.products = [];
     await this.saveOrder();
   }
@@ -58,7 +52,6 @@ export class UserOrderService {
 
   numProducts() {
     if (this.order && this.order.products.length > 0) {
-      // suma de las cantidades
       return this.order.products
         .reduce(
           (acum: number, value: QuantityProduct) =>
@@ -68,31 +61,21 @@ export class UserOrderService {
   }
 
   async addProduct(product: Product) {
-
-    // Busco el producto
-    const productFound = this.searchProduct(product);
-
-    // Si existe, aumentamos la cantidad
+    const productFound = this.searchProduct(product); //Buscar si el producto existe
     if (productFound) {
       productFound.quantity++;
     } else {
-      // Sino, le ponemos 1 de cantidad
       this.order.products.push({
         product,
         quantity: 1
       })
     }
-
     await this.saveOrder();
-
   }
 
   async oneMoreProduct(product: Product) {
-
-    // Busco el producto
     const productFound = this.searchProduct(product);
 
-    // Si existe, aumentamos la cantidad
     if (productFound) {
       productFound.quantity++;
     }
@@ -103,33 +86,26 @@ export class UserOrderService {
 
   async oneLessProduct(product: Product) {
 
-    // Busco el producto
     const productFound = this.searchProduct(product);
 
-     // Si existe, decrementamos la cantidad
     if (productFound) {
       productFound.quantity--;
-      // Si se queda a cero, lo eliminamos
       if (productFound.quantity == 0) {
         this.removeProduct(product);
       }
     }
-
     await this.saveOrder();
   }
 
   async removeProduct(product: Product) {
-    // Elimino los productos iguales que son iguales al que hemos pasado
     remove(this.order.products, p => isEqual(p.product, product));
     await this.saveOrder();
   }
 
   priceProduct(product: Product) {
 
-    // Precio base
     let total = product.price;
 
-    // si existe los extras calculamos el precio total
     if (product.extras) {
       product.extras.forEach(extra => {
         extra.blocks.forEach(block => {
@@ -145,14 +121,11 @@ export class UserOrderService {
       })
     }
 
-    return +total.toFixed(2);
+    return +total.toFixed(2); //Esto ayuda a mostrar solo dos decimales
   }
 
   totalPrice(quantityProduct: QuantityProduct) {
-
-    // Precio del producto por la cantidad
     const total = this.priceProduct(quantityProduct.product) * quantityProduct.quantity;
-
     return +total.toFixed(2);
   }
 
@@ -177,8 +150,7 @@ export class UserOrderService {
   }
 
   async saveUser(user: User) {
-    // eliminamos el password del usuario
-    delete user.password;
+    delete user.password; // eliminamos el password del usuario por seguridad
     this.order.user = user;
     await this.saveOrder();
   }

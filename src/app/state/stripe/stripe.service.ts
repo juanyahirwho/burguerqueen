@@ -15,7 +15,7 @@ export class StripeService {
       params: {},
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${paymentIntent.secretKey}` // Secret key de stripe
+        "Authorization": `Bearer ${paymentIntent.secretKey}` 
       },
       data: {
         ...paymentIntent

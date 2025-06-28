@@ -95,7 +95,7 @@ export class PayPage {
       secretKey: environment.secretKey,
       amount: +total.toFixed(0),
       currency: 'EUR',
-      customer_id: 'cus_SKDjnkFREwLQuj'
+      customer_id: 'cus_SaELw2uAcrQKQc'
     };
 
     this.store.dispatch(new CreatePaymentSheet({ paymentIntent }));
@@ -103,7 +103,6 @@ export class PayPage {
   }
 
   createOrder() {
-
     const order = this.userOrderService.getOrder();
     order.address = this.address;
 
@@ -129,8 +128,6 @@ export class PayPage {
         );
       }
     })
-
-
   }
 
   detectChangesPayment() {
@@ -159,7 +156,7 @@ export class PayPage {
   }
 
   ionViewWillLeave() {
-    this.store.dispatch(new ClearPayment())
+    this.store.dispatch(new ClearPayment()) //Al cerrar se limpia la información del pago
     this.subscription.unsubscribe();
   }
 

@@ -1,10 +1,10 @@
-<ion-content [fullscreen]="true" *ngIf="product">
+<ion-content [fullscreen]="true" *ngIf="product" class="product-page">
   
   <ion-refresher slot="fixed" (ionRefresh)="getProduct($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <!-- Producto sin extras -->
+  <!-- Mostrar si el producto no tiene extras -->
   <ion-grid *ngIf="!product.extras">
     <ion-row>
       <ion-col>
@@ -25,7 +25,7 @@
   <!-- Producto con extras -->
   <ion-grid *ngIf="product.extras">
 
-    <!-- Precio acumulado -->
+    <!-- Precio acumulado-->
     <ion-row>
       <ion-col>
         <ion-item lines="none">
@@ -35,21 +35,16 @@
       </ion-col>
     </ion-row>
 
-    <!-- Recorremos los extras -->
+    <!-- Aquí se muestran los extras -->
     <ion-row *ngFor="let extra of product.extras">
-
-      <!-- Label del extra -->
       <ion-col size="12" class="ion-text-center block-title">
         <ion-text>{{extra.label | translate}}</ion-text>
       </ion-col>
-
       <ion-col [size]="extra.blocks.length == 1 ? 12 : 6" *ngFor="let block of extra.blocks">
 
         <ion-card class="list product ion-text-center">
-
           <ion-img [src]="'assets/img/products/' + block.img"></ion-img>
           <ion-card-header>
-            
             <ion-card-title>
               {{block.name | translate}}
               <ion-text *ngIf="block.options.length == 1">({{block.options[0].price + ' $'}})</ion-text>
@@ -71,14 +66,12 @@
         </ion-card>
 
       </ion-col>
-
     </ion-row>
-
   </ion-grid>
 
-  <!-- Boton para añadir el producto -->
+  <!-- Boton para agregar el producto -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="addProductOrder()">
+    <ion-fab-button color="success" (click)="addProductOrder()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

@@ -52,7 +52,6 @@ export class ToolbarComponent implements OnInit {
       filter((event) => event.type == EventType.RoutesRecognized)
     ).subscribe({
       next: (event: RoutesRecognized) => {
-        // Actualizamos si se debe mostrar o no la flecha de volver
         this.showBack = event.state.root.firstChild.data['showBack'];
       }
     })
@@ -80,7 +79,6 @@ export class ToolbarComponent implements OnInit {
     this.back();
     // Cerramos el menu
     this.menuController.close('content');
-    // Vamos a pago
     this.navController.navigateForward('pay');
   }
 
@@ -93,7 +91,6 @@ export class ToolbarComponent implements OnInit {
     await this.userOrderService.clear();
     // Eliminamos el token
     await Preferences.remove({ key: KEY_TOKEN });
-    // Vamos categorias
     this.navController.navigateForward('categories');
     // cerramos el contenido
     this.menuController.close('content');

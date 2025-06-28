@@ -1,8 +1,5 @@
 <form (ngSubmit)="login()">
-
   <ion-grid>
-
-    <!-- Email -->
     <ion-row>
       <ion-col>
         <ion-item>
@@ -15,8 +12,6 @@
         </ion-item>
       </ion-col>
     </ion-row>
-
-    <!-- Password -->
     <ion-row>
       <ion-col>
         <ion-item>
@@ -29,18 +24,15 @@
         </ion-item>
       </ion-col>
     </ion-row>
-
-    <!-- Botones -->
     <ion-row>
       <ion-col *ngIf="showBack">
-        <ion-button expand="block" type="button" (click)="exit()">{{'label.back' | translate}}</ion-button>
+        <ion-button color="light" expand="block" type="button" (click)="exit()">{{'label.back' | translate}}</ion-button>
       </ion-col>
       <ion-col>
-        <ion-button expand="block" type="submit" >{{'label.login' | translate}}</ion-button>
+        <ion-button color="success" expand="block" type="submit" >{{'label.login' | translate}}</ion-button>
       </ion-col>
     </ion-row>
 
-    <!-- Enlace a nueva cuenta -->
     <ion-row>
       <ion-col>
         <a (click)="createNewAccount()">{{'label.new.account' | translate}}</a>

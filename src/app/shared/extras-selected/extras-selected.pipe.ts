@@ -12,16 +12,12 @@ export class ExtrasSelectedPipe implements PipeTransform {
 
   transform(value: ProductExtra[]): string[] {
     let optionsSelected: string[] = [];
-    
-    // recorremos los extras del producto
     value.forEach(extra => {
       extra.blocks.forEach(block => {
-        // Una sola opcion
         if(block.options.length == 1 && block.options[0].activate){
-          optionsSelected.push(this.translate.instant(block.name));
+          optionsSelected.push(this.translate.instant(block.name)); //Añadir si es un solo extra
         }else{
-          // Varias opciones
-          const optionSelected = block.options.find(option => option.activate);
+          const optionSelected = block.options.find(option => option.activate); //Añadir si son más
           if(optionSelected){
             optionsSelected.push(this.translate.instant(block.name) + ': ' + this.translate.instant(optionSelected.name));
           }

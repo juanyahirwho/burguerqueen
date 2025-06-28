@@ -22,7 +22,6 @@ export class CreateAccountComponent {
   @Output() back: EventEmitter<boolean>;
   @Output() doCreateAccount: EventEmitter<boolean>;
 
-  // Objeto donde guardaremos los datos del usuario
   public user: User;
 
   constructor(
@@ -36,7 +35,6 @@ export class CreateAccountComponent {
   }
 
   createAccount() {
-    // Creamos el usuario
     this.store.dispatch(new CreateUser({ user: this.user })).subscribe({
       next: () => {
         const success = this.store.selectSnapshot(UsersState.success);
@@ -44,7 +42,6 @@ export class CreateAccountComponent {
           this.toastService.showToast(
             this.translate.instant('label.create.account.success')
           )
-          // Nos logueamos y obtenemos el usuario para el token
           this.store.dispatch(new Login({
             email: this.user.email,
             password: this.user.password
@@ -53,7 +50,6 @@ export class CreateAccountComponent {
               this.store.dispatch(new GetUser({ email: this.user.email }))
             }
           })
-          // indicamos que hemos creado una cuenta
           this.doCreateAccount.emit(true);
         } else {
           this.toastService.showToast(
@@ -69,7 +65,6 @@ export class CreateAccountComponent {
   }
 
   exit() {
-    // indicamos que vamos a salir
     this.back.emit(true);
   }
 

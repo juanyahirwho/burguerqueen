@@ -3,7 +3,7 @@ import { User } from "./user";
 
 export class Order {
     _id?: string;
-    user: User; // usuario
-    products: QuantityProduct[]; // productos con su cantidad
-    address?: string; // Direccion
+    user: User; 
+    products: QuantityProduct[]; //Los productos y su cantidad
+    address?: string; 
 }

@@ -37,7 +37,6 @@ export class StripeState {
 
   @Action(ClearPayment)
   clearPayment({ setState }: StateContext<StripeStateModel>) {
-    // Reiniciar el objeto
     setState({
       payment: null
     })

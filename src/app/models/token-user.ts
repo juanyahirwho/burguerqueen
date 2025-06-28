@@ -1,3 +1,3 @@
 export class TokenUser {
-    accessToken: string; // codigo de accesso para endpoints con seguridad
+    accessToken: string; // Token del usuario para la seguridad con los endpoints
 }

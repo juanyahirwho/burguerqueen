@@ -20,7 +20,7 @@ export class UsersService {
       },
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + token.value // Authorization
+        'Authorization': 'Bearer ' + token.value
       }
     }).then((response: HttpResponse) => {
       if (response.status == 200) {

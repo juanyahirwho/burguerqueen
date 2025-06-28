@@ -39,7 +39,6 @@ export class LoginComponent {
   }
 
   login() {
-    // Nos logueamos
     this.store.dispatch(new Login({
       email: this.user.email,
       password: this.user.password
@@ -50,7 +49,6 @@ export class LoginComponent {
           this.toastService.showToast(
             this.translate.instant('label.login.success')
           );
-          // Obtenemos el usuario completo
           this.store.dispatch(new GetUser({ email: this.user.email }))
           // Indicamos que hemos hecho el login
           this.doLogin.emit(true);
@@ -68,12 +66,10 @@ export class LoginComponent {
   }
 
   exit() {
-    // Indicamos que hemos ido hacia atras
     this.back.emit(true);
   }
 
   createNewAccount() {
-    // Indicamos que hemos pulsado sobre nueva cuenta
     this.newAccount.emit(true);
   }
 

@@ -6,6 +6,6 @@ export class Product {
     name: string;
     img?: string;
     price: number;
-    category: Category; // categoria
-    extras?: ProductExtra[]; // Extras del producto
+    category: Category; 
+    extras?: ProductExtra[]; // extras del producto
 }

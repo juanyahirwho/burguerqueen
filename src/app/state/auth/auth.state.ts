@@ -32,7 +32,6 @@ export class AuthState {
   login({ setState }: StateContext<AuthStateModel>, { payload }: Login) {
     return this.authService.login(payload.email, payload.password).then(async (token: TokenUser) => {
       if (token) {
-        // Guardamos el token en Preferences
         await Preferences.set({ key: KEY_TOKEN, value: token.accessToken });
         setState({
           success: true

@@ -27,7 +27,8 @@
 
 
 ion-toolbar {
-    --background: #2764a5;
+    --background: linear-gradient(90deg, #f7921c, #fa0205);
+    
 }
 
 ion-card.list ion-card-header{
@@ -50,7 +51,60 @@ ion-card.list ion-card-title {
     font-size: 16px;
 }
 
+ion-card.list {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* sombra suave */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+/* Efecto al hacer clic */
+ion-card.list:active {
+  transform: scale(0.97); /* efecto de "presión" */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* sombra más sutil al presionar */
+}
+
 #content{
     margin-top: 56px;
     margin-bottom: 56px;
+}
+
+
+// product.page.scss
+
+.product-page {
+
+  ion-card.product {
+    width: 100%;
+    max-width: 260px;
+    margin: auto;
+  }
+
+  ion-card-title {
+    word-wrap: break-word;
+    white-space: normal;
+    text-align: center;
+    font-size: 16px;
+  }
+
+  ion-card-content {
+    font-size: 14px;
+  }
+
+  ion-item {
+    --inner-padding-end: 0px;
+    --padding-start: 0px;
+    --min-height: 30px;
+    align-items: center;
+    white-space: normal;
+  }
+
+  ion-radio {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: initial;
+  }
+
+  ion-label {
+    white-space: normal;
+  }
 }

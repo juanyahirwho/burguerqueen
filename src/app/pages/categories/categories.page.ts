@@ -36,8 +36,6 @@ export class CategoriesPage {
   }
 
   async loadData() {
-
-    // Loading
     const loading = await this.loadingController.create({
       message: this.translate.instant('label.loading'),
     });
@@ -61,15 +59,12 @@ export class CategoriesPage {
   }
 
   goToProducts(category: Category) {
-    // guardamos el id de la categoria en navParams
-    this.navParams.data['idCategory'] = category._id;
+    this.navParams.data['idCategory'] = category._id; //Se pasa el id 
     this.navController.navigateForward('list-products')
   }
 
   refreshCategories($event) {
-    // Refrescar categorias
     this.store.dispatch(new GetCategories());
-    // Indicamos que el refresher se ha completado
     $event.target.complete();
   }
 

@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   urlApi: 'http://localhost:3000/api/v1/',
-  publishKey: 'pk_test_51RPZ91RvXLAf8him9XfHUlZLkHdoUWR1p2A2hdWOPJNa4d7IHC8S8xZr4XQqIjIh5PNxYEAbU2XyL4RO8bCokHs200y0RY67hp',
-  secretKey: 'sk_test_51RPZ91RvXLAf8himxSbDEaxnqNw5QkiB3kW3fMWz2OhU3rPZWDl8kEx0R8MtS86QUnh0zUQVpLnYzvtabTERCqxj00M6q7FTkn'
+  publishKey: 'pk_test_51Rf3gwRmGKSbHPdN3B9ztGdXyUukt4AKJVC0Cchk7TJOq4kJPevyawfhHAnI3hRiSbp0WokwrtiJqHSgzmmOs7Dd00wek0uVYB',
+  secretKey: 'sk_test_51Rf3gwRmGKSbHPdNhiarqoA73RNsoYPhXyF4lygHWGUPpybkf2CtDetR1I1FUBmG7AwTGs2AMBJXIAdzi8472QtV00JzNkN47H'
 };
 
 /*

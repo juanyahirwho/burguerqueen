@@ -16,10 +16,8 @@ export class ListProductsPage {
 
   @Select(ProductsState.products)
   private products$: Observable<Product[]>;
-
   public products: Product[];
   private idCategory: string;
-
   private subscription: Subscription;
 
   constructor(
@@ -30,28 +28,21 @@ export class ListProductsPage {
     private translate: TranslateService
   ) {
     this.products = [];
-
   }
 
-  async ionViewWillEnter() {
+  async ionViewWillEnter() { //Cargar cuando se entra en la página
     this.subscription = new Subscription();
-   
     console.log(this.navParams.data['idCategory']);
     this.idCategory = this.navParams.data['idCategory'];
 
     if (this.idCategory) {
-
-      
       const loading = await this.loadingController.create({
         message: this.translate.instant('label.loading'),
       });
-
       await loading.present();
-
       this.store.dispatch(new GetProductsByCategory({ idCategory: this.idCategory }));
       const sub = this.products$.subscribe({
         next: () => {
-          
           this.products = this.store.selectSnapshot(ProductsState.products);
           console.log(this.products);
           loading.dismiss(); 
@@ -68,19 +59,16 @@ export class ListProductsPage {
   }
 
   goToProduct(product: Product) {
-    
     this.navParams.data['product'] = product;
     this.navController.navigateForward('product');
   }
 
   refreshProducts($event) {
-    
     this.store.dispatch(new GetProductsByCategory({ idCategory: this.idCategory }));
-    
     $event.target.complete();
   }
 
-  ionViewWillLeave() {
+  ionViewWillLeave() { //Se desuscribe al salir de esta page
     this.subscription.unsubscribe();
   }
 

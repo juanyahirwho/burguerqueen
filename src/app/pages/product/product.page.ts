@@ -36,8 +36,8 @@ export class ProductPage {
     console.log(this.navParams.data['product']);
     this.product = this.navParams.data['product'];
 
-    // Si es un extra obtengo el total base
-    if (this.product && this.product.extras) {
+
+    if (this.product && this.product.extras) {    // Si es un extra se toma el total base
       this.total = this.product.price;
     }
 
@@ -48,19 +48,15 @@ export class ProductPage {
   }
 
   changeMultipleOption($event, options: ProductExtraOption[]) {
-    // Actualizamos el activate de las opciones
-    options.forEach(op => op.activate = $event.detail.value == op.name);
-    // Actualizar el precio del producto
-    this.calculateTotal();
+    options.forEach(op => op.activate = $event.detail.value == op.name);// Actualizamos el activate de las opciones
+    this.calculateTotal(); //Se recalcula el total
   }
 
   calculateTotal() {
-    // Actualizar el precio del producto
     this.total = this.userOrderService.priceProduct(this.product);
   }
 
   getProduct($event) {
-
     this.store.dispatch(new GetProductById({ id: this.product._id })).subscribe({
       next: () => {
         this.product = this.store.selectSnapshot(ProductsState.product);
@@ -70,16 +66,12 @@ export class ProductPage {
         $event.target.complete();
       }
     })
-
   }
 
   addProductOrder() {
 
-    // Añadimos el producto a la orden
     this.userOrderService.addProduct(this.product);
-
     console.log(this.userOrderService.getProducts());
-
     this.toastService.showToast(
       this.translate.instant('label.product.add.success')
     );
